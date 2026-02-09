@@ -1,0 +1,35 @@
+backend:
+  name: git-gateway
+  branch: main # O la rama que estés usando
+
+media_folder: "public/img/uploads" # Carpeta donde se guardarán las fotos que suban
+public_folder: "/img/uploads"
+
+collections:
+  - name: "configuracion"
+    label: "Configuración Global"
+    delete: false # Para que no borren la configuración por error
+    editor:
+      preview: false
+    files:
+      - name: "banner"
+        label: "Banner Superior"
+        file: "src/data/banner.json"
+        fields:
+          - { label: "Activar Banner", name: "active", widget: "boolean", default: true }
+          - { label: "Mensaje", name: "message", widget: "string" }
+          - { label: "Enlace (Link)", name: "link", widget: "string" }
+          - { label: "Tipo de Aviso", name: "type", widget: "select", options: ["info", "warning", "promotion"] }
+
+  - name: "noticias"
+    label: "Noticias y Avisos"
+    folder: "src/content/noticias" # Aquí se guardarán como archivos .md
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Categoría", name: "category", widget: "string" }
+      - { label: "Vigencia", name: "validity", widget: "string", hint: "Ej: Hasta el 28 de Feb" }
+      - { label: "Descripción Corta", name: "description", widget: "text" }
+      - { label: "Imagen de Portada", name: "image", widget: "image" }
+      - { label: "Cuerpo de la Noticia", name: "body", widget: "markdown" }

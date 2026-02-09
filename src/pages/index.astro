@@ -1,49 +1,508 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
+import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Footer from '../components/Footer.astro';
+
+// Configuración del Banner de Avisos
+const banner = {
+  active: true,
+  message: '¡Nuevas ubicaciones de ElectroPoint disponibles! Conoce más.',
+  link: 'http://localhost:4322/',
+  type: 'info' 
+};
+
+// Contenido del Hero
+const heroContent = {
+  title: 'ENERGÍA QUE IMPULSA TU FUTURO',
+  subtitle: 'Soluciones eléctricas de vanguardia y puntos de carga inteligentes con el respaldo de E2V.',
+  ctaText: 'Descubre ElectroPoint',
+  ctaLink: 'http://localhost:4322/',
+  image: '/hero-e2v.webp' 
+};
+
+// Datos de Noticias y Promociones
+const news = [
+  {
+    title: "Nueva Estación ElectroPoint en Equipetrol",
+    description: "Ampliamos nuestra red de carga inteligente. Ya puedes encontrar un nuevo punto de carga rápida en la zona norte.",
+    validity: "Disponible ahora",
+    image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=500",
+    category: "Expansión"
+  },
+  {
+    title: "Mantenimiento Preventivo Industrial",
+    description: "Lanzamos paquetes especiales de revisión técnica para plantas industriales durante el mes de febrero.",
+    validity: "Hasta el 28 de febrero",
+    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=500",
+    category: "Servicios"
+  },
+  {
+    title: "Webinar: Eficiencia Energética 2026",
+    description: "Únete a nuestra charla virtual sobre cómo reducir costos operativos mediante el monitoreo inteligente de energía.",
+    validity: "Evento: 15 de marzo",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=500",
+    category: "Evento"
+  }
+];
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout title="E2V - Ingeniería Eléctrica Avanzada">
+  <Header />
+
+  <main>
+    {banner.active && (
+      <div class={`top-banner ${banner.type}`}>
+        <div class="banner-container">
+          <p>{banner.message}</p>
+          <a href={banner.link} class="banner-link">Ver más</a>
+        </div>
+      </div>
+    )}
+    <section id="inicio" class="section hero">
+      <div class="hero-content">
+        <h1 class="Rajdhani">{heroContent.title}</h1>
+        <p>{heroContent.subtitle}</p>
+        <a href={heroContent.ctaLink} class="btn-primary">{heroContent.ctaText}</a>
+      </div>
+      <div class="hero-image-wrapper">
+        <img src={heroContent.image} alt="E2V Energía Inteligente" class="hero-image" />
+        <div class="hero-overlay"></div>
+      </div>
+    </section>
+
+    <section id="quienes-somos" class="section-about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-content">
+            <span class="tag">Nuestra Identidad</span>
+            <h2 class="section-title">Ingeniería que transforma</h2>
+            <p class="main-description">
+              En <strong>E2V</strong>, combinamos experiencia técnica con innovación para ofrecer soluciones eléctricas que impulsan el desarrollo industrial y urbano.
+            </p>
+
+            <div class="mision-vision">
+              <div class="mv-card">
+                <div class="mv-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/><path d="m9 12 2 2 4-4"/></svg>
+                </div>
+                <div>
+                  <h3>Misión</h3>
+                  <p>Proveer servicios de ingeniería eléctrica de alta precisión, optimizando el consumo energético e infraestructuras inteligentes.</p>
+                </div>
+              </div>
+
+              <div class="mv-card">
+                <div class="mv-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="1"/></svg>
+                </div>
+                <div>
+                  <h3>Visión</h3>
+                  <p>Ser el referente regional en soluciones energéticas integrales y el despliegue de la red ElectroPoint.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-image">
+            <div class="image-placeholder">
+              <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800" alt="Ingeniería E2V" />
+              <div class="experience-badge">
+                <span class="number">10+</span>
+                <span class="text">Años de <br/>Experiencia</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="noticias" class="section-news">
+      <div class="container">
+        <div class="news-header">
+          <span class="tag">Actualidad</span>
+          <h2 class="section-title">Noticias y Avisos</h2>
+        </div>
+
+        <div class="news-grid">
+          {news.map((item) => (
+            <article class="news-card">
+              <div class="card-image">
+                <span class="category-tag">{item.category}</span>
+                <img src={item.image} alt={item.title} />
+              </div>
+              <div class="card-content">
+                <div class="validity-badge">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <span>Vigencia: {item.validity}</span>
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+                <a href="#" class="read-more">Leer más <span>→</span></a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+   <section id="contacto" class="section-contact">
+  <div class="container">
+    <div class="contact-header">
+      <span class="tag">Conectemos</span>
+      <h2 class="section-title">Hablemos de tu proyecto</h2>
+      <p>Estamos listos para ofrecerte la mejor asesoría técnica y soluciones energéticas.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="info-item highlight">
+          <div class="info-icon whatsapp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <h3>WhatsApp (Principal)</h3>
+            <a href="https://wa.me/591XXXXXXX" target="_blank" class="contact-link">+591 XXXXXXXX</a>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <div>
+            <h3>Email</h3>
+            <a href="mailto:info@e2v.com.bo" class="contact-link">info@e2v.com.bo</a>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <h3>Teléfono Oficina</h3>
+            <span class="contact-link">+591 3 XXX XXX</span>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="nombre">Nombre Completo</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required />
+        </div>
+
+        <div class="form-group">
+          <label for="empresa">Empresa o Institución</label>
+          <input type="text" id="empresa" name="empresa" placeholder="Nombre de tu organización" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+591" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Enviar Solicitud</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  /* --- ESTILOS GENERALES Y BANNER --- */
+  .top-banner {
+    background-color: var(--brand-800);
+    color: var(--brand-100);
+    padding: 12px 0;
+    height: auto;
+    font-size: 0.9rem;
+    text-align: center;
+    position: relative;
+    z-index: 1000;
+  }
+  .top-banner.info { background-color: var(--tech-600); }
+  .top-banner.warning { background-color: var(--alert); }
+  .top-banner.promotion { background-color: var(--cta-main); color: var(--brand-800); }
+
+  .banner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+  }
+  .banner-link { color: inherit; font-weight: 600; text-decoration: underline; }
+
+  /* --- HERO SECTION --- */
+  .hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    overflow: hidden;
+    color: var(--brand-800);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 600px;
+    margin-left: 5%;
+    padding: 40px 0;
+  }
+  .hero h1 { font-size: 3.8rem; font-weight: 700; line-height: 1.1; margin-bottom: 20px; }
+  .hero p { font-size: 1.3rem; margin-bottom: 40px; color: var(--brand-600); }
+  
+  .btn-primary {
+    display: inline-block;
+    background-color: var(--cta-main);
+    color: var(--brand-800) !important;
+    padding: 15px 35px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: var(--font-main);
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 0px var(--box-shadow);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 0px var(--box-shadow); }
+
+  .hero-image-wrapper { position: absolute; top: 0; right: 0; width: 60%; height: 100%; z-index: 1; }
+  .hero-image { width: 100%; height: 100%; object-fit: cover; }
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, var(--brand-100) 0%, rgba(255, 255, 255, 0.2) 60%, transparent 100%);
+  }
+
+  /* --- SOBRE NOSOTROS --- */
+  .section-about { padding: 0 40px ; background-color: var(--brand-100); }
+  .about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; align-items: center; }
+  .tag { color: var(--tech-600); font-family: var(--font-main); font-weight: 700; text-transform: uppercase; margin-bottom: 15px; display: block; }
+  .section-title { font-size: 2.8rem; color: var(--brand-800); margin-bottom: 25px; font-family: var(--font-main); }
+  .main-description { font-size: 1.1rem; line-height: 1.7; margin-bottom: 40px; }
+  
+  .mision-vision { display: flex; flex-direction: column; gap: 30px; }
+  .mv-card { display: flex; gap: 20px; }
+  .mv-icon { background: var(--brand-100); color: var(--cta-main); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 4px; flex-shrink: 0; }
+  .mv-card h3 { font-size: 1.2rem; margin-bottom: 8px; font-family: var(--font-main); }
+
+  .about-image { position: relative; }
+  .image-placeholder { aspect-ratio: 4/5; overflow: hidden; border-radius: 4px; position: relative; }
+  .image-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+  .experience-badge {
+    position: absolute;
+    bottom: 30px;
+    left: -40px;
+    background: var(--brand-800);
+    color: var(--white);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-left: 5px solid var(--cta-main);
+  }
+  .experience-badge .number { font-size: 2.5rem; font-weight: 700; color: var(--cta-main); font-family: var(--font-main); }
+
+  /* --- NOTICIAS --- */
+  .section-news { padding: 100px 40px; background-color: var(--tech-100); }
+  .news-header { text-align: center; margin-bottom: 50px; }
+  .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+  
+  .news-card { background: var(--white); border-radius: 4px; overflow: hidden; transition: transform 0.3s ease; }
+  .news-card:hover { transform: translateY(-10px); }
+  .card-image { position: relative; height: 200px; }
+  .card-image img { width: 100%; height: 100%; object-fit: cover; }
+  .category-tag { position: absolute; top: 15px; left: 15px; background: var(--brand-800); color: var(--white); padding: 5px 10px; font-size: 0.7rem; font-family: var(--font-main); }
+  
+  .card-content { padding: 25px; }
+  .validity-badge { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--tech-600); font-family: var(--font-main); margin-bottom: 10px; font-weight: bold; }
+  .card-content h3 { font-size: 1.2rem; margin-bottom: 12px; font-family: var(--font-main); color: var(--brand-800); }
+  .read-more { font-family: var(--font-main); text-decoration: none; color: var(--brand-800); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 1024px) {
+    .hero { flex-direction: column; text-align: center; padding-top: 40px; }
+    .hero-content { width: 90%; margin: auto; }
+    .hero-image-wrapper { position: relative; width: 100%; height: 350px; }
+    .hero h1 { font-size: 2.5rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .experience-badge { left: 20px; }
+  }
+
+  /*Contacto */
+    .section-contact {
+    padding: 40px ;
+    background-color: var(--brand-100);
+    font-family: var(--font-main);
+  }
+
+  .contact-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  /* Info lateral */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .info-item {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+    border-radius: 4px;
+    background: var(--brand-100);
+    transition: transform 0.3s ease;
+  }
+
+  .info-item.highlight {
+    background: var(--brand-800);
+    color: var(--white);
+  }
+
+  .info-item.highlight .contact-link {
+    color: var(--cta-main);
+  }
+
+  .info-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--white);
+    color: var(--brand-800);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .info-item.highlight .info-icon {
+    background: var(--cta-main);
+    color: var(--brand-800);
+  }
+
+  .info-item h3 {
+    font-family: var(--font-main);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .contact-link {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--brand-800);
+  }
+
+  /* Formulario */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: var(--white);
+    padding: 40px;
+    border: 1px solid var(--brand-200);
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    /*box-shadow: 0 10px 30px rgba(0,0,0,0.05);*/
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-group label {
+    font-family: var(--font-main);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--brand-600);
+  }
+
+  .form-group input, .form-group textarea {
+    padding: 12px 15px;
+    border: 1px solid var(--brand-200);
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+
+  .form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: var(--cta-main);
+  }
+
+  .btn-submit {
+    background: var(--brand-800);
+    color: white;
+    border: none;
+    padding: 18px;
+    font-family: var(--font-main);
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+
+  .btn-submit:hover {
+    background: var(--cta-main);
+    color: var(--brand-800);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+    .contact-form {
+      padding: 25px;
+    }
+  }
+</style>
